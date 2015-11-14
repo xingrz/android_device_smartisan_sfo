@@ -156,11 +156,6 @@ service security-check2 /sbin/security_boot_check recovery
     class core
     oneshot
 
-service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
-
 service scitd /system/bin/scitd
    class late_start
    socket scitd stream 660 shell factory

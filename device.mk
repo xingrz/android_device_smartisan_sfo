@@ -202,6 +202,10 @@ PRODUCT_PACKAGES += \
     libxml2 \
     libprotobuf-cpp-full
 
+# Time for RIL
+PRODUCT_PACKAGES += \
+    libtime_genoff
+
 # Wifi
 PRODUCT_PACKAGES += \
     ipacm \
