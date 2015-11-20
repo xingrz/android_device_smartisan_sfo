@@ -240,6 +240,7 @@ PRODUCT_COPY_FILES += \
 
 # RIL
 PRODUCT_PACKAGES += \
+    libshim_rmt_storage \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full

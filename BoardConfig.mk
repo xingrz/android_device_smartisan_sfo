@@ -183,6 +183,9 @@ TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 # SELinux
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor-minimal
 
+# Shims
+TARGET_LD_SHIM_LIBS += /system/bin/rmt_storage|/system/lib/libshim_rmt_storage.so
+
 # Timeservice
 BOARD_USES_QC_TIME_SERVICES := true
 
