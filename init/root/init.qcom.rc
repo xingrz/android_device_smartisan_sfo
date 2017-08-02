@@ -427,6 +427,7 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
     disabled
+    shutdown critical
 
 on property:ro.boot.emmc=true
     start rmt_storage
