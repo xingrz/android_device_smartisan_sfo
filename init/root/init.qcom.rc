@@ -191,6 +191,10 @@ on boot
     chown system system /sys/class/leds/flashlight/brightness
     chmod 0644 /sys/class/leds/flashlight/brightness
 
+on post-fs
+    # Allow writing to the kernel trace log.
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
 # msm specific files that need to be created on /data
 on post-fs-data
     write /sys/devices/msm_sdcc.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0/queue/scheduler noop
