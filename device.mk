@@ -131,6 +131,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     cneapiclient \
     com.quicinc.cne \
+    libcnefeatureconfig \
+    libwpa_client \
     services-ext
 
 # Display
