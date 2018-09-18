@@ -81,3 +81,8 @@ TW_EXTRA_LANGUAGES := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_THEME := portrait_hdpi
 TW_IGNORE_MISC_WIPE_DATA := true
+
+# Workaround to build busybox on newer macOS
+ifeq ($(HOST_OS),darwin)
+MACOSX_DEPLOYMENT_TARGET := 10.9
+endif
