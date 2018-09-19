@@ -31,6 +31,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.qcom.class_core.sh \
     init.qcom.post_boot.sh \
+    init.program_bdaddr.sh \
     usf_post_boot.sh
 
 # GPS
