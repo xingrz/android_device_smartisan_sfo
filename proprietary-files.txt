@@ -106,39 +106,10 @@ etc/firmware/cpp_firmware_v1_2_0.fw
 # Charger
 bin/hvdcp
 
-# DRM
-bin/qseecomd
-vendor/lib/libQSEEComAPI.so
-vendor/lib/libdrmdiag.so
-vendor/lib/libdrmfs.so
-vendor/lib/libdrmtime.so
-vendor/lib/liboemcrypto.so
-vendor/lib/librpmb.so
-vendor/lib/libssd.so
-
 # GPS
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
-
-# Graphics
-vendor/lib/egl/eglsubAndroid.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/libC2D2.so
-vendor/lib/libCB.so
-vendor/lib/libOpenCL.so
-vendor/lib/libRSDriver_adreno.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libc2d30-a3xx.so
-vendor/lib/libc2d30-a4xx.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-qcom.so
-vendor/lib/librs_adreno.so
-vendor/lib/librs_adreno_sha1.so
-vendor/lib/libsc-a3xx.so
 
 # Graphics firmware
 etc/firmware/a225_pfp.fw
@@ -176,12 +147,6 @@ vendor/firmware/BCM20795A1_001.002.012.0003.0083_Generic_I2C_NCD_Unsigned_config
 # Perf
 bin/mpdecision
 vendor/lib/libqc-opt.so
-
-# Postprocessing
-bin/mm-pp-daemon
-vendor/lib/libdisp-aba.so
-vendor/lib/libmm-abl-oem.so
-vendor/lib/libmm-abl.so
 
 # QMI
 -vendor/lib/libdiag.so
