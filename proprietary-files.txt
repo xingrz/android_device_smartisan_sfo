@@ -1,3 +1,9 @@
+# ADSP modules
+vendor/lib/rfsa/adsp/libdspCV_skel.so
+vendor/lib/rfsa/adsp/libfastcvadsp.so
+vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
+vendor/lib/rfsa/adsp/libscveT2T_skel.so
+
 # Audio ACDB
 etc/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb
 etc/acdbdata/Fluid/Fluid_General_cal.acdb
@@ -20,6 +26,9 @@ etc/acdbdata/MTP/MTP_Handset_cal.acdb
 etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
 etc/acdbdata/MTP/MTP_Headset_cal.acdb
 etc/acdbdata/MTP/MTP_Speaker_cal.acdb
+
+# Bluetooth
+bin/wcnss_filter
 
 # Camera
 bin/mm-qcamera-daemon
@@ -74,6 +83,9 @@ etc/firmware/RS_M10MO_L.fw
 etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
+
+# Charger
+bin/hvdcp
 
 # DRM
 vendor/lib/libsecureui.so
