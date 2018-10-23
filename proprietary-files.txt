@@ -109,5 +109,8 @@ vendor/lib/hw/sensors.msm8974.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 
+# STLport
+lib/libstlport.so
+
 # Wi-Fi
 etc/firmware/wlan/prima/WCNSS_cfg.dat
