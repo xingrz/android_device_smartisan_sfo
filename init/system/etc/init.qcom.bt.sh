@@ -119,15 +119,15 @@ config_bt ()
         setprop ro.qualcomm.bluetooth.hsp true
         setprop ro.qualcomm.bluetooth.pbap true
         setprop ro.qualcomm.bluetooth.ftp true
-        setprop ro.qualcomm.bluetooth.nap true
-        setprop ro.bluetooth.sap true
-        setprop ro.bluetooth.dun true
+        setprop ro.qualcomm.bluetooth.nap false
+        setprop ro.bluetooth.sap false
+        setprop ro.bluetooth.dun false
         case $btsoc in
           "ath3k")
               setprop ro.qualcomm.bluetooth.map false
               ;;
           *)
-              setprop ro.qualcomm.bluetooth.map true
+              setprop ro.qualcomm.bluetooth.map false
               ;;
         esac
         ;;
@@ -224,18 +224,18 @@ case "$config" in
 esac
 
 # mimic hciattach options parsing -- maybe a waste of effort
-USAGE="hciattach [-n] [-p] [-b] [-t timeout] [-s initial_speed] <tty> <type | id> [speed] [flow|noflow] [bdaddr]"
+#USAGE="hciattach [-n] [-p] [-b] [-t timeout] [-s initial_speed] <tty> <type | id> [speed] [flow|noflow] [bdaddr]"
 
-while getopts "blnpt:s:" f
-do
-  case $f in
-  b | l | n | p)  opt_flags="$opt_flags -$f" ;;
-  t)      timeout=$OPTARG;;
-  s)      initial_speed=$OPTARG;;
-  \?)     echo $USAGE; exit 1;;
-  esac
-done
-shift $(($OPTIND-1))
+#while getopts "blnpt:s:" f
+#do
+#  case $f in
+#  b | l | n | p)  opt_flags="$opt_flags -$f" ;;
+#  t)      timeout=$OPTARG;;
+#  s)      initial_speed=$OPTARG;;
+#  \?)     echo $USAGE; exit 1;;
+#  esac
+#done
+#shift $(($OPTIND-1))
 
 # Note that "hci_qcomm_init -e" prints expressions to set the shell variables
 # BTS_DEVICE, BTS_TYPE, BTS_BAUD, and BTS_ADDRESS.
@@ -247,6 +247,16 @@ STACK=`getprop ro.qc.bluetooth.stack`
 # BR/EDR & LE power class configurations
 POWER_CLASS=`getprop qcom.bt.dev_power_class`
 LE_POWER_CLASS=`getprop qcom.bt.le_dev_pwr_class`
+
+#find the bluetooth status
+STATUS=`getprop bluetooth.status`
+logi "STATUS : $STATUS"
+case $STATUS in
+    "on")
+       exit 0;;
+    *)
+    ;;
+esac
 
 #find the transport type
 TRANSPORT=`getprop ro.qualcomm.bt.hci_transport`
@@ -305,7 +315,7 @@ case $exit_code_hci_qcomm_init in
 esac
 
 # init does SIGTERM on ctl.stop for service
-trap "kill_hciattach" TERM INT
+#trap "kill_hciattach" TERM INT
 
 case $TRANSPORT in
     "smd")
@@ -321,8 +331,8 @@ case $TRANSPORT in
        esac
      ;;
      *)
-        logi "start hciattach"
-        start_hciattach
+ #       logi "start hciattach"
+ #       start_hciattach
         case $STACK in
             "bluez")
                logi "Bluetooth is turning On with Bluez stack "
@@ -333,8 +343,8 @@ case $TRANSPORT in
             ;;
         esac
 
-        wait $hciattach_pid
-        logi "Bluetooth stopped"
+#        wait $hciattach_pid
+#        logi "Bluetooth stopped"
      ;;
 esac
 
