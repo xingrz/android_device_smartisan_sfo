@@ -203,10 +203,6 @@ PRODUCT_PACKAGES += \
     libxml2 \
     libprotobuf-cpp-full
 
-# Sensors
-PRODUCT_PACKAGES += \
-    sensors.msm8974
-
 # Wifi
 PRODUCT_PACKAGES += \
     ipacm \
