@@ -27,4 +27,41 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),sfo)
 include $(call all-makefiles-under,$(LOCAL_PATH))
+
+include $(CLEAR_VARS)
+
+AUDIO_BINS := mbhc.bin wcd9320_anc.bin wcd9320_mad_audio.bin
+AUDIO_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/wcd9320/,$(notdir $(AUDIO_BINS)))
+$(AUDIO_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Audio bin link: $@"
+	@mkdir -p $(dir $@)
+	@rm -f $@
+	$(hide) ln -sf /data/misc/audio/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(AUDIO_SYMLINKS)
+
+WIFI_CFG_SYMLINK := $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_cfg.ini
+$(WIFI_CFG_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Wi-Fi config ini link: $@"
+	@mkdir -p $(dir $@)
+	@rm -f $@
+	$(hide) ln -sf /data/misc/wifi/$(notdir $@) $@
+
+WIFI_MAC_BINS := wifi_mac_nv.bin wifi_random_mac.bin
+WIFI_MAC_SYMLINK := $(addprefix $(TARGET_OUT_ETC)/firmware/wlan/prima/,$(notdir $(WIFI_MAC_BINS)))
+$(WIFI_MAC_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Wi-Fi MAC bin link: $@"
+	@mkdir -p $(dir $@)
+	@rm -f $@
+	$(hide) ln -sf /persist/.$(notdir $@) $@
+
+WIFI_NV_SYMLINK := $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+$(WIFI_NV_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Wi-Fi NV bin link: $@"
+	@mkdir -p $(dir $@)
+	@rm -f $@
+	$(hide) ln -sf /persist/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(WIFI_CFG_SYMLINK) $(WIFI_MAC_SYMLINK) $(WIFI_NV_SYMLINK)
+
 endif
