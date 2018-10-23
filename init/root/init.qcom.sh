@@ -100,7 +100,7 @@ case "$baseband" in
         ;;
 esac
 
-start_sensors
+#start_sensors
 
 case "$target" in
     "msm7630_surf" | "msm7630_1x" | "msm7630_fusion")

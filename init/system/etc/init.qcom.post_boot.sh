@@ -289,13 +289,13 @@ case "$target" in
                 echo 90 > /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
                 echo 1190400 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
                 echo 1 > /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
-                echo "85 1500000:90 1800000:70" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
+                echo "85 1500000:90 1800000:99" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
                 echo 40000 > /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
                 echo 20 > /sys/module/cpu_boost/parameters/boost_ms
-                echo 1728000 > /sys/module/cpu_boost/parameters/sync_threshold
+                echo 1190400 > /sys/module/cpu_boost/parameters/sync_threshold
                 echo 100000 > /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
                 echo 1497600 > /sys/module/cpu_boost/parameters/input_boost_freq
-                echo 40 > /sys/module/cpu_boost/parameters/input_boost_ms
+                echo 1200 > /sys/module/cpu_boost/parameters/input_boost_ms
                 setprop ro.qualcomm.perf.cores_online 2
             ;;
             *)

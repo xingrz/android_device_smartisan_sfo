@@ -37,8 +37,8 @@ on init
     # session is not exercised through RemoteDisplay in the android framework
     setprop persist.sys.wfd.virtual 0
 
-on post-fs
-    export LD_PRELOAD libNimsWrap.so
+#on post-fs
+#    export LD_PRELOAD libNimsWrap.so
 
 on fs
     mount_all fstab.qcom
@@ -161,6 +161,12 @@ service time_daemon /system/bin/time_daemon
    user root
    group root
 
+service scitd /system/bin/scitd
+   class late_start
+   socket scitd stream 660 shell factory
+   user root
+   group root
+
 service adsprpcd /system/bin/adsprpcd
    class main
    user media
@@ -226,6 +232,29 @@ service usf-post-boot /system/bin/sh /system/etc/usf_post_boot.sh
 on property:init.svc.bootanim=stopped
     start usf-post-boot
 
+on property:init.svc.scitd=running
+    chown root factory /dev/block/mmcblk0p18
+    chown root factory /dev/block/mmcblk0p19
+    chmod 0660 /dev/block/mmcblk0p18
+    chmod 0660 /dev/block/mmcblk0p19
+
+    chown root factory /sys/bus/msm_subsys/devices/subsys1/restart_level
+    chown system factory /sys/devices/virtual/timed_output/vibrator/enable
+    chown system factory /sys/class/leds/red/brightness
+    chown system factory /sys/class/leds/green/brightness
+    chown system factory /sys/class/leds/blue/brightness
+    chown system factory /sys/class/leds/flashlight/brightness
+
+    chmod 0664 /sys/bus/msm_subsys/devices/subsys1/restart_level
+    chmod 0664 /sys/devices/virtual/timed_output/vibrator/enable
+    chmod 0664 /sys/class/leds/red/brightness
+    chmod 0664 /sys/class/leds/green/brightness
+    chmod 0664 /sys/class/leds/blue/brightness
+    chmod 0664 /sys/class/leds/flashlight/brightness
+
+    chown nfc factory /dev/bcm2079x
+    chmod 0660 /dev/bcm2079x
+
 service imsqmidaemon /system/bin/imsqmidaemon
     class main
     user system
@@ -241,7 +270,7 @@ service imsdatadaemon /system/bin/imsdatadaemon
 
 service wcnss-service /system/bin/wcnss_service
     class main
-    user system
+    user root
     group system wifi radio
     oneshot
 
@@ -293,3 +322,7 @@ service ml_daemon /system/bin/ml_daemon
     class core
     user root
     group root
+
+service siodl /system/bin/isp_write /etc/firmware/RS_M10MO.fw
+    class main
+    oneshot
