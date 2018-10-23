@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2013, The Linux Foundation. All rights reserved.
+# Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,47 +27,21 @@
 #
 
 #
-# start ril-daemon only for targets on which radio is present
+# Function to start sensors for DSPS enabled platforms
 #
-baseband=`getprop ro.baseband`
-netmgr=`getprop ro.use_data_netmgrd`
-sgltecsfb=`getprop persist.radio.sglte_csfb`
+start_sensors()
+{
+    if [ -c /dev/msm_dsps -o -c /dev/sensors ]; then
+        chmod -h 775 /persist/sensors
+        chmod -h 664 /persist/sensors/sensors_settings
+        chown -h system.root /persist/sensors/sensors_settings
 
-case "$baseband" in
-    "apq")
-    setprop ro.radio.noril yes
-    stop ril-daemon
-esac
+        mkdir -p /persist/sensors/debug
+        chmod -h 775 /persist/sensors/debug
 
-case "$baseband" in
-    "msm" | "csfb" | "svlte2a" | "mdm" | "sglte" | "sglte2" | "dsda2" | "unknown")
-    start qmuxd
-    case "$baseband" in
-        "svlte2a" | "csfb")
-          start qmiproxy
-        ;;
-        "sglte" | "sglte2" )
-          if [ "x$sgltecsfb" != "xtrue" ]; then
-              start qmiproxy
-          else
-              setprop persist.radio.voice.modem.index 0
-          fi
-        ;;
-        "dsda2")
-          setprop persist.radio.multisim.config dsda
-    esac
-
-    multisim=`getprop persist.radio.multisim.config`
-
-    if [ "$multisim" = "dsds" ] || [ "$multisim" = "dsda" ]; then
-        start ril-daemon1
-    elif [ "$multisim" = "tsts" ]; then
-        start ril-daemon1
-        start ril-daemon2
+        start sensors
     fi
+}
 
-    case "$netmgr" in
-        "true")
-        start netmgrd
-    esac
-esac
+start_sensors
+

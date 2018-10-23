@@ -39,11 +39,8 @@ on init
     mkdir /storage 0050 system sdcard_r
     mkdir /storage/emulated 0555 root root
     mkdir /storage/emulated/legacy 0555 root root
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
 
@@ -93,6 +90,12 @@ on boot
     chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
+
+	setprop ro.nfc.port "I2C"
+	chmod 0600 /dev/bcm2079x
+	chown nfc nfc /dev/bcm2079x
+	mkdir /data/nfc 0700 nfc nfc
+	mkdir /data/nfc/param 0700 nfc nfc
 
     setprop wifi.interface wlan0
 
@@ -172,8 +175,43 @@ on boot
     # Set the default message loglevel to KERN_INFO
     write /proc/sys/kernel/printk "6 6 1 7"
 
+    # LED related
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/red/ramp_step_ms
+    chown system system /sys/class/leds/green/ramp_step_ms
+    chown system system /sys/class/leds/blue/ramp_step_ms
+    chown system system /sys/class/leds/red/duty_pcts
+    chown system system /sys/class/leds/green/duty_pcts
+    chown system system /sys/class/leds/blue/duty_pcts
+    chmod 0644 /sys/class/leds/red/brightness
+    chmod 0644 /sys/class/leds/green/brightness
+    chmod 0644 /sys/class/leds/blue/brightness
+    chmod 0644 /sys/class/leds/red/blink
+    chmod 0644 /sys/class/leds/green/blink
+    chmod 0644 /sys/class/leds/blue/blink
+    chmod 0644 /sys/class/leds/red/ramp_step_ms
+    chmod 0644 /sys/class/leds/green/ramp_step_ms
+    chmod 0644 /sys/class/leds/blue/ramp_step_ms
+    chmod 0644 /sys/class/leds/red/duty_pcts
+    chmod 0644 /sys/class/leds/green/duty_pcts
+    chmod 0644 /sys/class/leds/blue/duty_pcts
+
+    #LCD color temperature set
+    chown system system /data/pcc_config.conf
+    chmod 0644 /data/pcc_config.conf
+
+    # Torch
+    chown system system /sys/class/leds/flashlight/brightness
+    chmod 0644 /sys/class/leds/flashlight/brightness
+
 # msm specific files that need to be created on /data
 on post-fs-data
+    write /sys/devices/msm_sdcc.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0/queue/scheduler noop
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -291,18 +329,6 @@ on property:bluetooth.isEnabled=true
     start btwlancoex
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
-on property:bluetooth.sap.status=running
-    start bt-sap
-
-on property:bluetooth.sap.status=stopped
-    stop bt-sap
-
-on property:bluetooth.dun.status=running
-    start bt-dun
-
-on property:bluetooth.dun.status=stopped
-    stop bt-dun
-
 on property:ro.bluetooth.ftm_enabled=true
     start ftmd
 
@@ -390,20 +416,6 @@ service hciattach_ath3k /system/bin/sh /system/etc/init.ath3k.bt.sh
      disabled
      oneshot
 
-service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin inet
-    disabled
-    oneshot
-
-service bt-sap /system/bin/sapd 15
-    user bluetooth
-    group bluetooth net_bt_admin
-    class late_start
-    disabled
-    oneshot
-
 service ftmd /system/bin/logwrapper /system/bin/ftmdaemon
     class late_start
     user root
@@ -441,7 +453,6 @@ service netmgrd /system/bin/netmgrd
     disabled
 
 service sensors /system/bin/sensors.qcom
-    class late_start
     user root
     group root
     disabled
@@ -485,7 +496,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 -dddd \
+    -O/data/misc/wifi/sockets -puse_p2p_group_interface=1 \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
@@ -499,7 +510,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
-    -O/data/misc/wifi/sockets -dddd \
+    -O/data/misc/wifi/sockets \
     -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
@@ -534,6 +545,7 @@ service ptt_socket_app /system/bin/ptt_socket_app -d
     class main
     user root
     group root
+    disabled
     oneshot
 
 service ptt_ffbm /system/bin/ptt_socket_app -f -d
@@ -596,30 +608,11 @@ service location_mq /system/bin/location-mq
     group gps
     disabled
 
-service xtwifi_inet /system/bin/xtwifi-inet-agent
-    class late_start
-    user gps
-    group inet gps
-    disabled
-
-service xtwifi_client /system/bin/xtwifi-client
-    class late_start
-    user gps
-    group net_admin wifi inet gps
-    disabled
-
 service lowi-server /system/bin/lowi-server
     class late_start
     user gps
     group gps net_admin wifi inet qcom_diag
     disabled
-
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system fm_radio
-    disabled
-    oneshot
 
 on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
@@ -643,6 +636,11 @@ on property:drmdiag.load=0
 
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
+    user root
+    oneshot
+
+service sensor-sh /system/bin/sh /init.sensor.sh
+    class main
     user root
     oneshot
 
@@ -731,19 +729,11 @@ service profiler_daemon /system/bin/profiler_daemon
 service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
     class late_start
 
-service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-
 # Binding fuse mount point to /storage/emulated/legacy
 on property:init.svc.sdcard=running
     wait /mnt/shell/emulated/0
     mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
 
-service hcidump /system/bin/sh /system/etc/hcidump.sh
-    user bluetooth
-    group bluetooth system net_bt_admin net_admin
-    disabled
-    oneshot
 
 service charger /charger
     class charger
