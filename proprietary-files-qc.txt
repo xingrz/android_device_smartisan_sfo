@@ -96,28 +96,6 @@ vendor/lib/libdisp-aba.so
 vendor/lib/libmm-abl-oem.so
 vendor/lib/libmm-abl.so
 
-# QMI
--vendor/lib/libdiag.so
--vendor/lib/libdsutils.so
--vendor/lib/libidl.so
--vendor/lib/libqcci_legacy.so
--vendor/lib/libqmi.so
--vendor/lib/libqmi_client_qmux.so
--vendor/lib/libqminvapi.so
--vendor/lib/libqmiservices.so
-vendor/bin/irsc_util
-vendor/etc/data/qmi_config.xml
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libqdi.so
-vendor/lib/libqdp.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_csvt_srvc.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libsmemlog.so
-vendor/lib/libsystem_health_mon.so
-
 # Radio
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/app/shutdownlistener/shutdownlistener.apk
