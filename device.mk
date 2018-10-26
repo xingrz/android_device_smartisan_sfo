@@ -138,6 +138,16 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libtinyxml
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8974 \
+    libgps.utils \
+    libloc_core \
+    libloc_eng
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf
+
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
