@@ -156,7 +156,7 @@ service security-check2 /sbin/security_boot_check recovery
     class core
     oneshot
 
-service time_daemon /system/bin/time_daemon
+service time_daemon /system/vendor/bin/time_daemon
    class late_start
    user root
    group root
