@@ -1,90 +1,58 @@
 # ADSP
-bin/adsprpcd
+vendor/bin/adsprpcd
+vendor/lib/libacdbmapper.so
 vendor/lib/libadsprpc.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
+vendor/lib/libscve.so
+vendor/lib/libscve_stub.so
 
-# Audio common qcom
+# ADSP modules
+vendor/lib/rfsa/adsp/libapps_mem_heap.so
+vendor/lib/rfsa/adsp/libdspCV_skel.so
+vendor/lib/rfsa/adsp/libfastcvadsp.so
+vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
+vendor/lib/rfsa/adsp/libscveT2T_skel.so
+
+# Audio
+vendor/lib/libDiracAPI_SHARED.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
+vendor/lib/libaudioalsa.so
+vendor/lib/liblisten.so
+vendor/lib/liblistenhardware.so
+vendor/lib/liblistenjni.so
+vendor/lib/liblistensoundmodel.so
+vendor/lib/soundfx/libdirac.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 
 # Bluetooth
-bin/btnvtool
-bin/hci_qcomm_init
+vendor/bin/hci_qcomm_init
+vendor/lib/libaptX_encoder.so
 vendor/lib/libbtnv.so
 
-# CNE
--priv-app/CNEService/CNEService.apk
--priv-app/dpmserviceapp/dpmserviceapp.apk
-bin/cnd
-bin/dpmd
-etc/cne/SwimConfig.xml
-etc/cne/andsfCne.xml
-etc/dpm/dpm.conf
-etc/dpm/nsrm/NsrmConfiguration.xml
-etc/permissions/ConnectivityExt.xml
-etc/permissions/cneapiclient.xml
-etc/permissions/com.qti.dpmframework.xml
-etc/permissions/com.quicinc.cne.xml
-etc/permissions/dpmapi.xml
-framework/ConnectivityExt.jar
-framework/cneapiclient.jar
-framework/com.qti.dpmframework.jar
-framework/com.quicinc.cne.jar
-framework/dpmapi.jar
-vendor/lib/libNimsWrap.so
-vendor/lib/libcne.so
-vendor/lib/libcneapiclient.so
-vendor/lib/libcneconn.so
-vendor/lib/libcneqmiutils.so
-vendor/lib/libdpmframework.so
-vendor/lib/libdpmnsrm.so
-vendor/lib/libvendorconn.so
-
 # DRM
-bin/qseecomd
-etc/permissions/com.google.widevine.software.drm.xml
-framework/com.google.widevine.software.drm.jar
-lib/libdrmdecrypt.so
-vendor/lib/drm/libdrmwvmplugin.so
+vendor/bin/qseecomd
 vendor/lib/libQSEEComAPI.so
-vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/libdrmdiag.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
+vendor/lib/liboemcrypto.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
-vendor/lib/libwvdrm_L3.so
-vendor/lib/libwvm.so
-vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS
--priv-app/com.qualcomm.location/com.qualcomm.location.apk
-bin/loc_launcher
-etc/permissions/com.qti.location.sdk.xml
-etc/permissions/com.qualcomm.location.xml
-framework/com.qti.location.sdk.jar
-lib/libloc_api_v02.so
-lib/libloc_ds_api.so
-vendor/bin/slim_daemon
+vendor/bin/loc_launcher
 vendor/lib/hw/flp.default.so
-vendor/lib/libalarmservice_jni.so
-vendor/lib/libdataitems.so
 vendor/lib/libflp.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
-vendor/lib/liblocationservice.so
-vendor/lib/liblocationservice_glue.so
-vendor/lib/liblowi_client.so
-vendor/lib/libslimclient.so
-vendor/lib/libulp2.so
-vendor/lib/libxtwifi_ulp_adaptor.so
+vendor/lib/libloc_api_v02.so
 
 # Graphics
 vendor/lib/egl/eglsubAndroid.so
@@ -97,65 +65,89 @@ vendor/lib/libCB.so
 vendor/lib/libOpenCL.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libadreno_utils.so
+vendor/lib/libbccQTI.so
 vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30-a4xx.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-qcom.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/libsc-a3xx.so
+vendor/lib/libscale.so
 
 # Media
-vendor/lib/libI420colorconvert.so
-vendor/lib/libmm-color-convertor.so
+vendor/lib/libHevcSwDecoder.so
+vendor/lib/libOmxAacDec.so
+vendor/lib/libOmxAmrwbplusDec.so
+vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxQcelp13Dec.so
+vendor/lib/libOmxVdecHevc.so
+vendor/lib/libOmxWmaDec.so
 vendor/lib/libmmosal.so
 
 # Perf
-bin/mpdecision
+vendor/bin/mpdecision
 vendor/lib/libqc-opt.so
 vendor/lib/libqti-perfd-client.so
 
+# Postprocessing
+vendor/bin/mm-pp-daemon
+vendor/lib/libdisp-aba.so
+vendor/lib/libmm-abl-oem.so
+vendor/lib/libmm-abl.so
+
 # QMI
-bin/irsc_util
-vendor/lib/libdiag.so
+-vendor/lib/libdiag.so
+-vendor/lib/libdsutils.so
+-vendor/lib/libidl.so
+-vendor/lib/libqcci_legacy.so
+-vendor/lib/libqmi.so
+-vendor/lib/libqmi_client_qmux.so
+-vendor/lib/libqminvapi.so
+-vendor/lib/libqmiservices.so
+vendor/bin/irsc_util
+vendor/etc/data/qmi_config.xml
 vendor/lib/libdsi_netctrl.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
-vendor/lib/libqmi.so
 vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_qmux.so
 vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
+vendor/lib/libqmi_csvt_srvc.so
 vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
+vendor/lib/libsmemlog.so
+vendor/lib/libsystem_health_mon.so
 
 # Radio
--app/shutdownlistener/shutdownlistener.apk
--lib/libmdmdetect.so
--priv-app/QtiTetherService/QtiTetherService.apk
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-bin/netmgrd
-bin/qmuxd
-bin/radish
-bin/rfs_access
-bin/rmt_storage
-etc/data/dsi_config.xml
-etc/data/netmgr_config.xml
-etc/permissions/qcnvitems.xml
-etc/permissions/qcrilhook.xml
-framework/qcnvitems.jar
-framework/qcrilhook.jar
-framework/qti-telephony-common.jar
-vendor/lib/libQtiTether.so
+vendor/app/shutdownlistener/shutdownlistener.apk
+vendor/bin/netmgrd
+vendor/bin/qmuxd
+vendor/bin/radish
+vendor/bin/rfs_access
+vendor/bin/rmt_storage
+vendor/etc/data/dsi_config.xml
+vendor/etc/data/netmgr_config.xml
+vendor/etc/permissions/qcnvitems.xml
+vendor/etc/permissions/qcrilhook.xml
+vendor/framework/qcnvitems.jar
+vendor/framework/qcrilhook.jar
+vendor/framework/qti-telephony-common.jar
+vendor/lib/lib-dplmedia.so
+vendor/lib/lib-rtpcommon.so
+vendor/lib/lib-rtpcore.so
+vendor/lib/lib-rtpdaemoninterface.so
+vendor/lib/lib-rtpsl.so
+vendor/lib/libNimsWrap.so
+vendor/lib/libcneapiclient.so
 vendor/lib/libconfigdb.so
-vendor/lib/liblqe.so
+vendor/lib/libmdmdetect.so
 vendor/lib/libnetmgr.so
 vendor/lib/libperipheral_client.so
 vendor/lib/libril-qc-qmi-1.so
 vendor/lib/libril-qcril-hook-oem.so
 vendor/lib/libxml.so
+vendor/qcril.db
 
 # Thermal
 vendor/bin/thermal-engine
@@ -163,15 +155,16 @@ vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
 # Time services
--app/TimeService/TimeService.apk
+-vendor/app/TimeService/TimeService.apk
+-vendor/lib/libTimeService.so
 -vendor/lib/libtime_genoff.so
-vendor/lib/libTimeService.so
+vendor/bin/time_daemon
 
 # Venus (media) firmware
-etc/firmware/venus.b00
-etc/firmware/venus.b01
-etc/firmware/venus.b02
-etc/firmware/venus.b03
-etc/firmware/venus.b04
-etc/firmware/venus.mbn
-etc/firmware/venus.mdt
+vendor/firmware/venus.b00
+vendor/firmware/venus.b01
+vendor/firmware/venus.b02
+vendor/firmware/venus.b03
+vendor/firmware/venus.b04
+vendor/firmware/venus.mbn
+vendor/firmware/venus.mdt
