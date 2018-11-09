@@ -43,8 +43,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 BUILD_FINGERPRINT := smartisan/msm8974sfo_lte/msm8974sfo_lte:4.4.2/SANFRANCISCO:user/dev-keys
 
-# Sign bootable images
-PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
-
 TARGET_VENDOR := Smartisan
