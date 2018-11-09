@@ -28,7 +28,3 @@ PRODUCT_MODEL := SM705
 
 TARGET_VENDOR_DEVICE_NAME := msm8974sfo_lte
 TARGET_VENDOR_PRODUCT_NAME := msm8974sfo_lte
-
-# Sign bootable images
-PRODUCT_SUPPORTS_BOOT_SIGNER := true
-PRODUCT_VERITY_SIGNING_KEY := build/target/product/security/verity
