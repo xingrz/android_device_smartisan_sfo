@@ -112,9 +112,9 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 
 # MK Hardware
 BOARD_HARDWARE_CLASS += \
-    hardware/cyanogen/mkhw \
+    hardware/mokee/mkhw \
     $(DEVICE_PATH)/mkhw
-BOARD_USES_CYANOGEN_HARDWARE := true
+BOARD_USES_MOKEE_HARDWARE := true
 
 # CNE and DPM
 BOARD_USES_QCNE := true

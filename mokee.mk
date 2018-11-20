@@ -22,12 +22,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/smartisan/sfo/device.mk)
 
 # Inherit some common MK stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/mk/config/common_full_phone.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.mk.maintainer=XiNGRZ
 
-PRODUCT_NAME := cm_sfo
+PRODUCT_NAME := mk_sfo
 PRODUCT_BRAND := smartisan
 PRODUCT_DEVICE := sfo
 PRODUCT_MANUFACTURER := smartisan
