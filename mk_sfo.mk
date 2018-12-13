@@ -30,14 +30,7 @@ PRODUCT_NAME := mk_sfo
 PRODUCT_BRAND := smartisan
 PRODUCT_DEVICE := sfo
 PRODUCT_MANUFACTURER := smartisan
-PRODUCT_MODEL := SM705
 
 PRODUCT_GMS_CLIENTID_BASE := android-smartisan
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME="msm8974sfo_lte" \
-    PRIVATE_BUILD_DESC="msm8974sfo_lte-user 4.4.2 SANFRANCISCO dev-keys"
-
-BUILD_FINGERPRINT := smartisan/msm8974sfo_lte/msm8974sfo_lte:4.4.2/SANFRANCISCO:user/dev-keys
 
 TARGET_VENDOR := Smartisan
