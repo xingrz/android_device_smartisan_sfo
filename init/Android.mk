@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018 The MoKee Open Source Project
+# Copyright (C) 2019 The MoKee Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,18 @@
 # limitations under the License.
 #
 
-$(call inherit-product, build/target/product/embedded.mk)
+LOCAL_PATH := $(call my-dir)
 
-# Inherit some common MK stuff.
-$(call inherit-product, vendor/mk/config/common.mk)
+include $(CLEAR_VARS)
 
-## Device identifier. This must come after all inclusions
-PRODUCT_NAME := mk_sfo
-PRODUCT_BRAND := SMARTISAN
-PRODUCT_DEVICE := sfo
-PRODUCT_MANUFACTURER := smartisan
+LOCAL_C_INCLUDES := \
+    system/core/init
+
+LOCAL_STATIC_LIBRARIES := libbase
+
+LOCAL_SRC_FILES := init_sfo.cpp
+
+LOCAL_MODULE := libinit_sfo
+LOCAL_MODULE_TAGS := optional
+
+include $(BUILD_STATIC_LIBRARY)
