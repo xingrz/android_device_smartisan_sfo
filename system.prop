@@ -111,3 +111,6 @@ dalvik.vm.heapsize=512m
 dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=2m
 dalvik.vm.heapmaxfree=8m
+
+# Memory optimizations
+ro.vendor.qti.sys.fw.bservice_enable=true
