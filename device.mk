@@ -232,6 +232,10 @@ PRODUCT_PACKAGES += \
     sensors.msm8974 \
     android.hardware.sensors@1.0-impl
 
+# Touch
+PRODUCT_PACKAGES += \
+    vendor.mokee.touch@1.0-service.sfo
+
 # Trust HAL
 PRODUCT_PACKAGES += \
     vendor.mokee.trust@1.0-service
