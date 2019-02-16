@@ -82,6 +82,16 @@ on boot
     chown system system /sys/class/input/input5/enabled
     chown system system /sys/class/input/input6/enabled
 
+    # Keypad
+    chown system system /proc/keypad/power
+    chown system system /proc/keypad/left_down
+    chown system system /proc/keypad/left_up
+    chown system system /proc/keypad/right_down
+    chown system system /proc/keypad/right_up
+    chown system system /proc/keypad/nav_left
+    chown system system /proc/keypad/nav_middle
+    chown system system /proc/keypad/nav_right
+
 # Allow usb charging to be disabled persistently
 on property:persist.usb.chgdisabled=1
     write /sys/class/power_supply/battery/charging_enabled 0
