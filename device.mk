@@ -197,12 +197,14 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc@1.0-impl-bcm \
     android.hardware.nfc@1.0-service \
     com.android.nfc_extras \
+    nfc_nci.bcm2079x.default \
     NfcNci \
     nfcee_access.xml \
     Tag
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf
+    $(LOCAL_PATH)/nfc/libnfc-nci-20795a10.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci-20795a10.conf \
+    $(LOCAL_PATH)/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci.conf
 
 # OMX
 PRODUCT_PACKAGES += \
