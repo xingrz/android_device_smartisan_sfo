@@ -123,7 +123,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 service qgesturesvr /system/bin/mm-gesture-daemon
     class late_start
     user system
-    group system camera input graphics net_bt_stack
+    group system camera input graphics
 
 service qrngd /system/bin/qrngd -f
     class main
@@ -144,11 +144,6 @@ service qseecomd /system/bin/qseecomd
    class core
    user root
    group root
-
-service mpdecision /system/bin/mpdecision --avg_comp
-   class main
-   user root
-   disabled
 
 service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
    user system
@@ -178,7 +173,7 @@ service time_daemon /system/bin/time_daemon
 
 service scitd /system/bin/scitd
    class late_start
-   socket scitd stream 660 shell factory
+   socket scitd stream 660 shell
    user root
    group root
 
