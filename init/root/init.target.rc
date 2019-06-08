@@ -119,17 +119,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
 
-#start gesture server as daemon
-service qgesturesvr /system/bin/mm-gesture-daemon
-    class late_start
-    user system
-    group system camera input graphics
-
-service qrngd /system/bin/qrngd -f
-    class main
-    user root
-    group root
-
 service qrngp /system/bin/qrngp
     class main
     user root
@@ -158,22 +147,8 @@ service thermal-engine /system/bin/thermal-engine
    socket thermal-recv-passive-client stream 0666 system system
    group root
 
-service security-check1 /sbin/security_boot_check system
-    class core
-    oneshot
-
-service security-check2 /sbin/security_boot_check recovery
-    class core
-    oneshot
-
 service time_daemon /system/bin/time_daemon
    class late_start
-   user root
-   group root
-
-service scitd /system/bin/scitd
-   class late_start
-   socket scitd stream 660 shell
    user root
    group root
 
@@ -260,12 +235,6 @@ on property:init.svc.scitd=running
     chown nfc factory /dev/bcm2079x
     chmod 0660 /dev/bcm2079x
 
-service imsqmidaemon /system/bin/imsqmidaemon
-    class main
-    user system
-    socket ims_qmid stream 0660 system radio
-    group radio net_raw log oem_2950
-
 service imsdatadaemon /system/bin/imsdatadaemon
     class main
     user system
@@ -311,23 +280,3 @@ on property:init.svc.surfaceflinger=stopped
 
 on property:init.svc.surfaceflinger=running
     start ppd
-
-service nqs /system/bin/nqs
-    class late_start
-    socket nqs_qsb_comm stream 660 system system
-    user system
-    group drmrpc
-
-service pfm /system/bin/pfm
-    class late_start
-    user system
-    group system drmrpc mount
-
-service ml_daemon /system/bin/ml_daemon
-    class core
-    user root
-    group root
-
-service siodl /system/bin/isp_write /etc/firmware/RS_M10MO.fw
-    class main
-    oneshot
