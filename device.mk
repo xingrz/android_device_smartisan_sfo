@@ -170,6 +170,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/gps/etc,$(TARGET_COPY_OUT_SYSTEM)/etc)
 
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.0-service
+
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
