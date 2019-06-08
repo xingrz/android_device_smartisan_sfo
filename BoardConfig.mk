@@ -181,7 +181,7 @@ TARGET_RIL_VARIANT := caf
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor-minimal
+include device/qcom/sepolicy-legacy/sepolicy.mk
 
 # Shims
 TARGET_LD_SHIM_LIBS += /system/bin/rmt_storage|/system/lib/libshim_rmt_storage.so
