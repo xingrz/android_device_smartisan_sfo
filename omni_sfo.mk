@@ -17,10 +17,10 @@
 $(call inherit-product, build/target/product/embedded.mk)
 
 # Inherit some common MK stuff.
-$(call inherit-product, vendor/mk/config/common.mk)
+$(call inherit-product, vendor/omni/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_NAME := mk_sfo
+PRODUCT_NAME := omni_sfo
 PRODUCT_BRAND := SMARTISAN
 PRODUCT_DEVICE := sfo
 PRODUCT_MANUFACTURER := smartisan
