@@ -1,0 +1,4 @@
+/data/cam_socket.*                                           u:object_r:camera_socket:s0
+/data/system/sensors                                         u:object_r:device:s0
+/data/system/sensors/settings                                u:object_r:device:s0
+/dev/bcm2079x                                                u:object_r:nfc_device:s0
