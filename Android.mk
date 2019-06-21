@@ -23,4 +23,14 @@ include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
 
+WIFI_MAC_BINS := wifi_mac_nv.bin wifi_random_mac.bin
+WIFI_MAC_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/wlan/prima/,$(notdir $(WIFI_MAC_BINS)))
+$(WIFI_MAC_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "WIFI MAC firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /persist/.$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(WIFI_MAC_SYMLINKS)
+
 endif
