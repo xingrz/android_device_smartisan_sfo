@@ -1,3 +1,7 @@
+on boot
+    write /sys/class/leds/red/brightness 255
+    write /sys/class/leds/green/brightness 255
+
 on fs
     wait /dev/block/platform/msm_sdcc.1
     symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
