@@ -41,6 +41,9 @@ on init
     mkdir /dev/pipes 0771 system system
 
 on fs
+    wait /dev/block/platform/msm_sdcc.1/mmcblk0
+    symlink /dev/block/platform/msm_sdcc.1 /dev/block/bootdevice
+
     mount_all /vendor/etc/fstab.qcom
 
     # Keeping following partitions outside fstab file. As user may not have
@@ -53,7 +56,7 @@ on fs
     mkdir /persist/data/tz 0700 system system
     mkdir /persist/audio 0771 media audio
 
-    mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
+    mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
