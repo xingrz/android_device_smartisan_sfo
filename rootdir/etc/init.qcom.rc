@@ -34,7 +34,6 @@ on early-init
     chmod 0755 /sys/kernel/debug
 
 on init
-    export LD_PRELOAD libshim_atomic.so
     export EXTERNAL_STORAGE /sdcard
 
     # Support legacy paths
