@@ -211,9 +211,4 @@ ifeq ($(HOST_OS),linux)
 endif
 DONT_DEXPREOPT_PREBUILTS := true
 
-# qcom sepolicy
-include device/qcom/sepolicy-legacy/sepolicy.mk
-
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-
 -include vendor/smartisan/sfo/BoardConfigVendor.mk
