@@ -30,6 +30,10 @@ PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
     init.program_bdaddr.sh
 
+# APEX
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/ld.config.txt:system/etc/swcodec/ld.config.txt
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8974
