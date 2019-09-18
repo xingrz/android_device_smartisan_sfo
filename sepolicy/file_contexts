@@ -1,0 +1,4 @@
+# Files in rootfs
+/firmware(/.*)?          u:object_r:firmware_file:s0
+/persist(/.*)?          u:object_r:firmware_file:s0
+/tombstones(/.*)?          u:object_r:firmware_file:s0

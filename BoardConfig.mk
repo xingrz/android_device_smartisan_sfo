@@ -211,4 +211,7 @@ ifeq ($(HOST_OS),linux)
 endif
 DONT_DEXPREOPT_PREBUILTS := true
 
+# SELinux
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+
 -include vendor/smartisan/sfo/BoardConfigVendor.mk
