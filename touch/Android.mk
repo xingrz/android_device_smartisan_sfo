@@ -17,7 +17,6 @@ LOCAL_SRC_FILES := \
 LOCAL_SHARED_LIBRARIES := \
     libbase \
     libhidlbase \
-    libhidltransport \
     libutils \
     vendor.mokee.touch@1.0
 
