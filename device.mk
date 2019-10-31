@@ -220,6 +220,10 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
 
+# Input
+PRODUCT_PACKAGES += \
+    KeyHandlerSfo
+
 # RenderScript HAL
  PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
