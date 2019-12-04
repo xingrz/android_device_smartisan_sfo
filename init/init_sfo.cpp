@@ -49,10 +49,12 @@ const std::string cpu_id_file = "/sys/pversion_info/cpu_id";
 void load_device(const char*name, const char *model, const char *description, const char *fingerprint)
 {
     property_set("ro.bootimage.build.fingerprint", fingerprint);
+    property_set("ro.build.product", name);
     property_set("ro.build.description", description);
     property_set("ro.build.fingerprint", fingerprint);
     property_set("ro.product.name", name);
     property_set("ro.product.model", model);
+    property_set("ro.product.device", name);
     property_set("ro.vendor.product.model", model);
     property_set("ro.vendor.build.fingerprint", fingerprint);
 }
